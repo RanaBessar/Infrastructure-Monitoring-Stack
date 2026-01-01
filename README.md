@@ -13,13 +13,13 @@ This project provides a production-ready, automated deployment solution for sett
 
 ## 📸 Screenshots
 
-### Monitoring Dashboard
-![Monitoring Dashboard](images/dashboard.png)
-*Real-time system metrics visualization in Grafana*
+### Prometheus Target Health
+![Prometheus Target Health](images/prometheus-health.jpg)
+*Monitoring target servers health status in Prometheus*
 
-### Architecture Diagram
-![Architecture](images/architecture.png)
-*Complete infrastructure overview*
+### Node Exporter Metrics
+![Node Exporter Metrics](images/node-exporter.jpg)
+*System metrics collected by Node Exporter*
 
 ---
 
@@ -282,39 +282,3 @@ sudo lsof -i :3000  # Check Grafana port
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
 ---
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👤 Author
-
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
-
----
-
-## 🙏 Acknowledgments
-
-- [Prometheus Documentation](https://prometheus.io/docs/)
-- [Grafana Documentation](https://grafana.com/docs/)
-- [Ansible Best Practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
-- [Node Exporter](https://github.com/prometheus/node_exporter)
-
----
-
-## 📈 Roadmap
-
-- [ ] Add support for additional exporters (MySQL, PostgreSQL, etc.)
-- [ ] Implement Grafana dashboard provisioning
-- [ ] Add SSL/TLS configuration for all services
-- [ ] Create automated backup and restore procedures
-- [ ] Add support for multi-cloud deployments
-- [ ] Integrate with external notification systems (Slack, PagerDuty)
-
----
-
-**⭐ If you find this project useful, please consider giving it a star!**
