@@ -1,0 +1,8 @@
+[metrics_hub]
+# Replace with your actual server IP
+# Example: 192.168.1.10 ansible_user=your_user ansible_become_password=your_password
+
+[target_servers]
+# Replace with your target server IPs
+# Example: 192.168.1.11 ansible_user=your_user ansible_become_password=your_password
+# Example: 192.168.1.12 ansible_user=your_user ansible_become_password=your_password

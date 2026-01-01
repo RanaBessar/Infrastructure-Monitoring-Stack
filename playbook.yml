@@ -1,0 +1,13 @@
+---
+- name: Setup Metrics Collection Hub
+  hosts: metrics_hub
+  become: true
+  roles:
+    - metrics_hub
+
+- name: Install System Exporters
+  hosts: target_servers
+  become: true
+  roles:
+    - system_exporter
+

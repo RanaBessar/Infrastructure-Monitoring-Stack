@@ -1,0 +1,76 @@
+---
+# Copy Prometheus configuration
+- name: Copy Prometheus config file
+  copy:
+    src: prometheus.yml
+    dest: /home/devops/prometheus.yml
+
+- name: Copy alert rules file
+  copy:
+    src: alert_rules.yml
+    dest: /home/devops/alert_rules.yml
+
+- name: Copy Alertmanager config file
+  copy:
+    src: alertmanager.yml
+    dest: /home/devops/alertmanager.yml
+
+# Clean up all existing containers
+- name: Stop all running containers
+  shell: podman stop --all
+  ignore_errors: yes
+
+- name: Remove all containers
+  shell: podman rm --all --force
+  ignore_errors: yes
+
+# Kill any processes using the ports
+- name: Kill process on port 9090
+  shell: "sudo lsof -ti:9090 | xargs -r sudo kill -9"
+  ignore_errors: yes
+
+- name: Kill process on port 9093
+  shell: "sudo lsof -ti:9093 | xargs -r sudo kill -9"
+  ignore_errors: yes
+
+- name: Kill process on port 3000
+  shell: "sudo lsof -ti:3000 | xargs -r sudo kill -9"
+  ignore_errors: yes
+
+# Deploy Prometheus
+- name: Start Prometheus container
+  containers.podman.podman_container:
+    name: prometheus-metrics
+    image: docker.io/prom/prometheus:latest
+    state: started
+    recreate: yes
+    ports:
+      - "9090:9090"
+    volumes:
+      - "/home/devops/prometheus.yml:/etc/prometheus/prometheus.yml:Z"
+      - "/home/devops/alert_rules.yml:/etc/prometheus/alert_rules.yml:Z"
+
+# Deploy Alertmanager
+- name: Start Alertmanager container
+  containers.podman.podman_container:
+    name: alertmanager-main
+    image: docker.io/prom/alertmanager:latest
+    state: started
+    recreate: yes
+    ports:
+      - "9093:9093"
+    volumes:
+      - "/home/devops/alertmanager.yml:/etc/alertmanager/alertmanager.yml:Z"
+
+# Deploy Grafana
+- name: Start Grafana container
+  containers.podman.podman_container:
+    name: grafana-viz
+    image: docker.io/grafana/grafana:latest
+    state: started
+    recreate: yes
+    ports:
+      - "3000:3000"
+    env:
+      GF_SECURITY_ADMIN_PASSWORD: "admin123"
+

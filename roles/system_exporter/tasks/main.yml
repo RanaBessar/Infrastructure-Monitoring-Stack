@@ -1,0 +1,16 @@
+---
+- name: Deploy Node Exporter on target server
+  containers.podman.podman_container:
+    name: system-exporter
+    image: quay.io/prometheus/node-exporter:latest
+    state: started
+    restart_policy: always
+    network: host
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--path.rootfs=/hostroot"
+    volume:
+      - "/proc:/host/proc:ro"
+      - "/sys:/host/sys:ro"
+      - "/:/hostroot:ro"
