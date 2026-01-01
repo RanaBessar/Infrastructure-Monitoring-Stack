@@ -5,7 +5,7 @@
 [![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat&logo=grafana&logoColor=white)](https://grafana.com/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-> **Automated deployment of a complete monitoring infrastructure using Ansible for CentOS/RHEL environments**
+> **Automated deployment of a complete monitoring infrastructure using Ansible for RHEL environment**
 
 This project provides a production-ready, automated deployment solution for setting up a comprehensive metrics collection and visualization stack across multiple servers using Ansible automation.
 
